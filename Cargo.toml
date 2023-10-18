@@ -1,0 +1,12 @@
+[workspace]
+members = [
+    "periphery"
+]
+
+[package]
+name = "rust-arduino-due-playground"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+periphery = { path = "periphery" }

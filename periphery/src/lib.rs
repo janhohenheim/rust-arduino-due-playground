@@ -2047,6 +2047,20 @@ impl Peripherals {
             Some(unsafe { Peripherals::steal() })
         })
     }
+
+    #[doc = r" Returns all the peripherals *once*"]
+    #[cfg(not(feature = "critical-section"))]
+    #[inline]
+    pub fn take() -> Option<Self> {
+        cortex_m::interrupt::free(|_| {
+            if unsafe { DEVICE_PERIPHERALS } {
+                None
+            } else {
+                Some(unsafe { Peripherals::steal() })
+            }
+        })
+    }
+
     #[doc = r" Unchecked version of `Peripherals::take`."]
     #[doc = r""]
     #[doc = r" # Safety"]

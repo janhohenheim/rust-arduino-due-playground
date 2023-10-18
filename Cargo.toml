@@ -9,4 +9,17 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-periphery = { path = "periphery" }
+periphery = { path = "periphery", features = ["rt"] }
+cortex-m = "0.7"
+cortex-m-rt = "0.7"
+panic-halt = "0.2"
+
+[[bin]]
+name = "rust-arduino-due-playground"
+test = false
+bench = false
+
+[profile.release]
+codegen-units = 1
+debug = true
+lto = true
